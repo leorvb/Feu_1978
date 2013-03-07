@@ -1,0 +1,105 @@
+
+  
+
+/*
+Recode Project
+Bernard Demiaux
+Feu d'artifice 1978
+
+>>> http://recodeproject.com/
+>>> www.freeartbureau.org
+*/
+
+// test 1 // éléonore sabaté // http://eleonoresabate.com/
+// je suis débutante en processing...
+
+// APPUYER SUR LA BARRE ESPACE POUR RELANCER UN NOUVEAU SCÉNARIO
+
+/////////////////////////// GLOBALS ////////////////////////////
+float x1 ;
+float y1;
+float x2  ;
+float y2 ;
+float r1;
+float r2 ;
+float d;
+float e1;
+float e2;
+
+
+/////////////////////////// SETUP ////////////////////////////
+
+
+void setup() {
+  size(500, 500);
+  background(255);
+  smooth();
+
+//coordonnées de départ lignes et carré 
+x1 = random(width/3, width-width/3);
+y1 = random(height/3, height-height/3);
+
+//coordonnées de départ cercles
+e1 =random(width);
+e2 = random(height);
+
+r1=random(-x1,x1);
+r2=random(-y1,y1);
+
+//déplacement
+d=random(-1,1);
+ 
+
+  
+}
+
+/////////////////////////// DRAW ////////////////////////////
+void draw() {
+  
+  frameRate(30) ;
+
+ 
+ smooth();
+
+//rectangle blanc semi-transparent pour laisser une trace du mouvement  
+fill(255,255,255,7);
+rect(-1,-1,width+1,height+1);
+
+
+ x2 = x1+r1 ;
+ y2= y1+r2 ;
+  
+  
+  stroke(0);
+  strokeCap(SQUARE);
+  strokeWeight(5);
+
+  
+  line(x1,y1,x2,y2);
+  line(y2,x1,y1,x2);
+  
+  ellipse(e1,e2,r1,r1);
+  ellipse(e2,e1,r2,r2);
+  
+  rect(width-x1,height-y1,r2+r1,r1+r2);
+  
+x1 += d;
+y1 += -d;
+e1 += -(2*d);
+e2 +=  -(2*d);
+
+}
+
+// appuyer sur la barre espace pour relancer un nouveau scénario
+
+void keyReleased()
+{
+ if (key==' ') setup();
+}
+
+
+
+
+
+/////////////////////////// FUNCTIONS ////////////////////////////
+
